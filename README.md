@@ -16,8 +16,12 @@ commit, branch and pull request, so the Studio's **Deployments** tab links to th
 1. **Put the Worker in the repository.** `npx @jojapi/cli pull <your-api>` writes the files and a
    `jojapi.json` that names the API. Commit both. Files under `src/` and npm dependencies are
    bundled by the CLI.
-2. **Create a Management API token** in the Studio (**Management API**) with the `code:read` and
-   `code:write` scopes.
+2. **Create a management token** in JoJ API's **Settings › Tokens** (Settings is in the user
+   menu, top right). Use the **CI: production deploys** template (`code:read`, `code:write`,
+   `variables:write`, `resources:write`, `deployments:promote`) and limit the token to the APIs
+   this repository deploys. If you would rather promote to production yourself, use
+   **CI: preview deploys** and run the workflow on pull requests only. A token created earlier
+   with `code:read` and `code:write` keeps deploying to production as before.
 3. **Add it to the repository** as the secret `JOJAPI_TOKEN` (**Settings → Secrets and variables
    → Actions**), by pasting the value. `gh secret set JOJAPI_TOKEN` works too when you paste at its
    prompt: piping an unset shell variable into it stores an empty secret without an error, and the
@@ -82,7 +86,7 @@ that reads it from the merged pull request:
 
 | Input | Default | Description |
 | --- | --- | --- |
-| `token` | — | Management API token with `code:read` and `code:write`. Pass it from a secret |
+| `token` | — | Management token from the **CI: production deploys** template, or **CI: preview deploys** for previews only (see [Set up](#set-up)). Pass it from a secret |
 | `working-directory` | `.` | Folder with the API's `jojapi.json` and files |
 | `production` | `auto` | `auto`: production on pushes to the default branch, a preview otherwise. `true` or `false` forces it |
 | `message` | pull request title or commit subject | Description of the deployment, shown in your Studio |

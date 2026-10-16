@@ -7,7 +7,7 @@ branding:
 
 inputs:
   token:
-    description: Management API token of the JoJ API account that owns the API, with the code:read and code:write scopes. Pass it from a secret.
+    description: 'Management token of the JoJ API account that owns the API, created in Settings › Tokens from the "CI: production deploys" template (code:read, code:write, variables:write, resources:write, deployments:promote) and limited to the APIs it deploys. Use "CI: preview deploys" if you promote to production yourself, and run the workflow on pull requests only. A token created earlier with code:read and code:write keeps deploying to production as before. Pass it from a secret.'
     required: true
   working-directory:
     description: Folder with the API's jojapi.json and Worker files.
