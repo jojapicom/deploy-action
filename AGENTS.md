@@ -35,7 +35,19 @@ Steps 4 and 5 are two separate things the owner does; never report them as one. 
 - `v1` must keep working for everyone who uses `@v1`: inputs keep their names and defaults, outputs keep their values.
 - The token reaches only the CLI process as `JOJAPI_TOKEN` and is never printed.
 - Workflows that use the action run on `pull_request`, never `pull_request_target`.
-- Commit messages in English; nothing about customers, prices or people in code, docs or commits.
+- Commit messages in English.
+- **What lands here is shared.** Teammates and other agents read this repo, so code, docs, commits and PRs hold
+  engineering facts only:
+  - No customer or person names and no consumer ids: describe the traffic ("a bulk customer", "`gl=pl` traffic") and
+    say "the owner" or "a collaborator". Customer, subscriber and payer counts stay out; the request rates and volumes
+    the system must carry stay in.
+  - No amounts in docs (prices, costs, revenue, margins); relative statements are fine. Price constants and budgets
+    that drive behaviour stay in code, and our own public plan prices are part of the contract.
+  - No legal risk assessments, terms-of-service analysis or business-model reasoning. An engineering constraint that
+    follows from them stays (a non-commercial model licence, "paid calls must leave from a Turkish address").
+  - Infrastructure identifiers (hosts, IPs, bucket and secret names), our own brands and third-party provider names
+    are fine. Secret values and provider prices never are.
+  - This repository is public: our infrastructure identifiers and secret names stay out of it as well.
 
 ## Behaviour that is easy to get wrong
 
